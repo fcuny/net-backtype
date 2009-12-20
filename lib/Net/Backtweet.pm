@@ -5,9 +5,9 @@ use MooseX::Net::API;
 extends 'Net::Backtype';
 
 net_api_declare backtweet => (
-    base_url    => 'http://backtweets.com',
-    format      => 'json',
-    format_mode => 'append',
+    api_base_url => 'http://backtweets.com',
+    format       => 'json',
+    format_mode  => 'append',
 );
 
 net_api_method backtweet_search => (
@@ -28,7 +28,7 @@ Net::Backtweet - client for the backtweet API
 
   use Net::Backtweet;
   my $client = Net::Backtweet->new();
-  my $res = $client->backtweet_search(q => 'http://lumberjaph.net', key => $mykey);
+  my $res = $client->backtweet_search(q => 'http://lumberjaph.net/', key => $mykey);
 
 =head1 DESCRIPTION
 
