@@ -6,9 +6,9 @@ use MooseX::Net::API;
 our $VERSION = '0.01';
 
 net_api_declare backtype => (
-    api_base_url => 'http://api.backtype.com',
-    format       => 'json',
-    format_mode  => 'append',
+    base_url    => 'http://api.backtype.com',
+    format      => 'json',
+    format_mode => 'append',
 );
 
 net_api_method user_comments => (
@@ -16,6 +16,7 @@ net_api_method user_comments => (
     method   => 'GET',
     params   => [qw/key user/],
     required => [qw/key user/],
+    expected => [qw/200/],
 );
 
 net_api_method user_followers => (

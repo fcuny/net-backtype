@@ -3,7 +3,6 @@ use warnings;
 use Test::More;
 use Net::Backtype;
 use Net::Backtweet;
-use YAML::Syck;
 
 BEGIN {
     plan skip_all => 'set $ENV{BACKTYPE_KEY} for this test'
