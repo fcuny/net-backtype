@@ -13,7 +13,7 @@ net_api_declare backtweet => (
 net_api_method backtweet_search => (
     path     => '/search',
     method   => 'GET',
-    params   => [qw/q since key/],
+    params   => [qw/q since key end start itemsperpage/],
     required => [qw/q key/],
     expected => [qw/200/],
 );
@@ -35,7 +35,7 @@ Net::Backtweet - client for the backtweet API
 
 Net::Backtype is a client for the backtweet API.
 
-=head2 METHODS 
+=head2 METHODS
 
 =over 4
 
