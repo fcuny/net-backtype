@@ -90,11 +90,39 @@ Net::Backtype is a client for the backtype API
 
 Search all the comments on BackType for a given string.
 
+    my $res = $client->comments_page(key => 's3kr3t', q => 'lumberjaph' );
+
+=over 2
+
+=item B<q> query (required)
+
+=item B<key> API key (required)
+
+=item B<start> date start (optional)
+
+=item B<end> date end (optional)
+
+=back
+
 See L<http://www.backtype.com/developers/comments-search>.
 
 =item B<comments_connect>
 
 Retrieve all conversations related to a given URL.
+
+    my $res = $client->comments_connect(key => 's3kr3t', url => 'lumberjaph');
+
+=over 2
+
+=item B<url> url (required)
+
+=item B<key> API key (required)
+
+=item B<sources> (optional)
+
+=item B<sort> (optional)
+
+=back
 
 See L<http://www.backtype.com/developers/comments-connect>.
 
@@ -102,17 +130,47 @@ See L<http://www.backtype.com/developers/comments-connect>.
 
 Retrieve statistics on the conversations related to a given URL.
 
+    my $res = $client->comments_connect_stats(url => 'lumberjaph', key => 's3kr3t');
+
+=over 2
+
+=item B<url> url (required)
+
+=item B<key> API key (required)
+
+=back
+
 See L<http://www.backtype.com/developers/comments-connect-stats>.
 
 =item B<comments_author>
 
 Retrieve comments written by a particular author.
 
+    my $res = $client->comments_author(url => 'lumberjaph', key => 's3kr3t');
+
+=over 2
+
+=item B<url> url (required)
+
+=item B<key> API key (required)
+
+=back
+
 See L<http://www.backtype.com/developers/url-comments>.
 
 =item B<comments_page>
 
 Retrieve excerpts of comments published on a particular page.
+
+    my $res = $client->comments_page_stats(url => 'lumberjaph', key => 's3kr3t');
+
+=over 2
+
+=item B<url> url (required)
+
+=item B<key> API key (required)
+
+=back
 
 See L<http://www.backtype.com/developers/page-comments>.
 

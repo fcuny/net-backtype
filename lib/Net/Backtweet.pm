@@ -17,7 +17,7 @@ net_api_method tweets_by_url => (
       'Retrieve tweets that link to a given URL, whether the links are shortened or unshortened.',
     path     => '/tweets/search/links',
     method   => 'GET',
-    params   => [qw/q key/],
+    params   => [qw/q key itemsperpage start end/],
     required => [qw/q key/],
     expected => [qw/200/],
 );
@@ -42,13 +42,18 @@ net_api_method good_tweets_by_url => (
     expected => [qw/200/],
 );
 
+# back compatibility
+sub backtweet_search {
+    (shift)->tweets_by_url(@_);
+}
+
 1;
 
 =head1 SYNOPSIS
 
   use Net::Backtweet;
   my $client = Net::Backtweet->new();
-  my $res = $client->backtweet_search(q => 'http://lumberjaph.net/', key => $mykey);
+  my $res = $client->tweets_by_url(q => 'lumberjaph', key => 's3kr3t');
 
 =head1 DESCRIPTION
 
@@ -62,17 +67,53 @@ Net::Backtype is a client for the backtweet API.
 
 Retrieve the number of tweets that link to a particular URL.
 
+    my $tweets = $client->tweets_by_url(q => 'lumberjaph', key => 's3kr3t');
+
+=over 2
+
+=item B<q> query (required)
+
+=item B<key> API key (required)
+
+=item B<itemsperpage> number of items per page (optional)
+
+=item B<start> date start (optional)
+
+=item B<end> date end (optional)
+
+=back
+
 See L<http://www.backtype.com/developers/tweets-by-url>.
 
 =item B<stats_by_url>
 
 Retrieve the number of tweets that link to a particular URL.
 
+    my $stats = $client->stats_by_url(q => 'lumberjaph', key => 's3kr3t');
+
+=over 2
+
+=item B<q> query (required)
+
+=item B<key> API key (required)
+
+=back
+
 See L<http://www.backtype.com/developers/tweet-count>.
 
 =item B<good_tweets_by_url>
 
 Retrieve filtered tweets that link to a given URL with both shortened and unshortened links. This returns a subset of Tweets by URL.
+
+    my $good = $client->good_tweets_by_url(q => 'lumberjaph', key => 's3kr3t');
+
+=over 2
+
+=item B<q> query (required)
+
+=item B<key> API key (required)
+
+=back
 
 See L<http://www.backtype.com/developers/good-tweets>.
 

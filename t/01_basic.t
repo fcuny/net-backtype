@@ -6,23 +6,22 @@ use HTTP::Response;
 use Net::Backtype;
 use Net::Backtweet;
 
+my $q   = 'lumberjaph';
+my $key = 's3kr3t';
+
 ok my $backtype = Net::Backtype->new, 'object backtype created';
 _add_handler($backtype);
-
-ok my $res = $backtype->comments_search(
-    key => 's3kr3tk3y',
-    q   => 'http://lumberjaph.net'
-  ),
+ok my $res = $backtype->comments_search(key => $key, q => $q,),
   'got result for backtype query';
 
 ok my $backtweet = Net::Backtweet->new, 'object backtweet created';
 _add_handler($backtweet);
 
-ok $res = $backtweet->stats_by_url(
-    key => 's3kr3tk3y',
-    q   => 'http://lumberjaph.net',
-  ),
+ok $res = $backtweet->stats_by_url(key => $key, q => $q,),
   'got result for backtweet query';
+
+ok my $compatilibity = $backtweet->backtweet_search(key => $key, q => $q),
+  'got result for old compatibility method';
 
 sub _add_handler {
     my $object = shift;
