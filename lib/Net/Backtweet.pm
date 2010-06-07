@@ -2,6 +2,7 @@ package Net::Backtweet;
 
 # ABSTRACT: client for the backtweet API
 
+use Moose;
 use MooseX::Net::API;
 extends 'Net::Backtype';
 

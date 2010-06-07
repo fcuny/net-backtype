@@ -2,6 +2,7 @@ package Net::Backtype;
 
 # ABSTRACT: client for the backtype API
 
+use Moose;
 use MooseX::Net::API;
 
 our $VERSION = '0.02';
