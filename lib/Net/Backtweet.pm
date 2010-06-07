@@ -12,12 +12,12 @@ net_api_declare backtweet => (
     format_mode => 'append',
 );
 
-net_api_method backtweet_search => (
+net_api_method tweets_by_url => (
     description =>
       'Retrieve tweets that link to a given URL, whether the links are shortened or unshortened.',
-    path     => '/search',
+    path     => '/tweets/search/links',
     method   => 'GET',
-    params   => [qw/q since key end start itemsperpage/],
+    params   => [qw/q key/],
     required => [qw/q key/],
     expected => [qw/200/],
 );
@@ -58,11 +58,23 @@ Net::Backtype is a client for the backtweet API.
 
 =over 4
 
-=item B<backtweet_search>
+=item B<tweets_by_url>
+
+Retrieve the number of tweets that link to a particular URL.
+
+See L<http://www.backtype.com/developers/tweets-by-url>.
 
 =item B<stats_by_url>
 
+Retrieve the number of tweets that link to a particular URL.
+
+See L<http://www.backtype.com/developers/tweet-count>.
+
 =item B<good_tweets_by_url>
+
+Retrieve filtered tweets that link to a given URL with both shortened and unshortened links. This returns a subset of Tweets by URL.
+
+See L<http://www.backtype.com/developers/good-tweets>.
 
 =back
 
